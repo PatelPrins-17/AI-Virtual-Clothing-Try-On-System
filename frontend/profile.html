@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Dressify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #06b6d4;
+            --secondary: #0891b2;
+            --accent: #f43f5e;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: #ffcc00;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+        }
+        
+        .profile-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .profile-sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+        
+        .profile-avatar {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .avatar-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .profile-email {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 0;
+            border-top: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--light-gray);
+            margin: 20px 0;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .profile-main {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .info-item {
+            padding: 20px;
+            background-color: var(--light);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--gray);
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #dc3545;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* Edit Profile Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .modal-header h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--dark);
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(106, 17, 203, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .modal-actions button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.3);
+        }
+
+        .btn-cancel {
+            background: var(--light-gray);
+            color: var(--dark);
+        }
+
+        .btn-cancel:hover {
+            background: #d0d4d9;
+        }
+
+        /* User Dropdown Menu */
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+        }
+
+        .user-info:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: white;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .user-name {
+            color: white;
+            font-weight: 600;
+        }
+
+        .user-dropdown-menu {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            min-width: 280px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .user-dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dropdown-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .dropdown-user-info {
+            flex: 1;
+        }
+
+        .dropdown-name {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .dropdown-email {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: var(--dark);
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+            background: var(--light);
+        }
+
+        .dropdown-item i {
+            width: 20px;
+            color: var(--primary);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: var(--light-gray);
+            margin: 8px 0;
+        }
+
+        .logout-item {
+            color: #dc3545;
+        }
+
+        .logout-item i {
+            color: #dc3545;
+        }
+
+        .logout-item:hover {
+            background: rgba(220, 53, 69, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-tshirt"></i>
+                <span>Dressify</span>
+            </div>
+            <div class="nav-links">
+                <a href="home.html"><i class="fas fa-home"></i> Home</a>
+            </div>
+            
+            <!-- User Menu -->
+            <div class="user-menu">
+                <div class="user-info" onclick="toggleUserDropdown()" title="Click for menu">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span class="user-name" id="headerUserName">User</span>
+                    <i class="fas fa-chevron-down" style="font-size: 0.8rem; margin-left: 5px;"></i>
+                </div>
+
+                <!-- User Dropdown Menu -->
+                <div class="user-dropdown-menu" id="userDropdownMenu">
+                    <div class="dropdown-header">
+                        <div class="dropdown-avatar" id="dropdownAvatar">U</div>
+                        <div class="dropdown-user-info">
+                            <div class="dropdown-name" id="dropdownName">User Name</div>
+                            <div class="dropdown-email" id="dropdownEmail">user@email.com</div>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="profile.html" class="dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <span>View Profile</span>
+                    </a>
+                    <a href="home.html" class="dropdown-item">
+                        <i class="fas fa-home"></i>
+                        <span>Back to Home</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" onclick="logout(event)" class="dropdown-item logout-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Log out</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <div id="loadingState" class="loading">
+            <i class="fas fa-spinner fa-spin fa-2x"></i>
+            <p>Loading profile...</p>
+        </div>
+        
+        <div id="errorState" class="error" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span id="errorMessage">Error loading profile</span>
+        </div>
+        
+        <div id="profileContent" class="profile-container" style="display: none;">
+            <!-- Sidebar -->
+            <div class="profile-sidebar">
+                <div class="profile-avatar">
+                    <div class="avatar-circle">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-name" id="profileName">Loading...</div>
+                    <div class="profile-email" id="profileEmail">Loading...</div>
+                </div>
+            </div>
+            
+            <!-- Main Profile Content -->
+            <div class="profile-main">
+                <h2 class="section-title">
+                    <i class="fas fa-user-circle"></i>
+                    Account Information
+                    <button class="btn btn-outline" onclick="openEditModal()" style="font-size: 0.9rem; padding: 6px 12px; margin-left: auto; background-color: var(--primary); color: white; border: none;">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </button>
+                </h2>
+                
+                <div class="info-grid" id="infoGrid">
+                    <div class="info-item">
+                        <div class="info-label">First Name</div>
+                        <div class="info-value" id="firstName">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Last Name</div>
+                        <div class="info-value" id="lastName">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Email Address</div>
+                        <div class="info-value" id="emailAddress">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Phone Number</div>
+                        <div class="info-value" id="phoneNumber">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Account Type</div>
+                        <div class="info-value" id="accountRole">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Member Since</div>
+                        <div class="info-value" id="memberSince">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Last Login</div>
+                        <div class="info-value" id="lastLogin">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Account Status</div>
+                        <div class="info-value" id="accountStatus">Loading...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Edit Profile</h2>
+                <button class="modal-close" onclick="closeEditModal()">&times;</button>
+            </div>
+            <form id="editProfileForm" onsubmit="saveProfile(event)">
+                <div class="form-group">
+                    <label for="editFirstName">First Name</label>
+                    <input type="text" id="editFirstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editLastName">Last Name</label>
+                    <input type="text" id="editLastName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editEmail">Email Address</label>
+                    <input type="email" id="editEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="editBio">Bio (Optional)</label>
+                    <textarea id="editBio" placeholder="Tell us about yourself..."></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeEditModal()">Cancel</button>
+                    <button type="submit" class="btn-save">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuthAndLoadProfile();
+        });
+
+        async function checkAuthAndLoadProfile() {
+            const token = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+
+            if (!token || !user) {
+                // Redirect to signup if not authenticated
+                window.location.href = 'signup.html';
+                return;
+            }
+
+            try {
+                // Load profile from API
+                await loadProfile();
+            } catch (error) {
+                console.error('Error loading profile:', error);
+                showError('Failed to load profile data');
+            }
+        }
+
+        async function loadProfile() {
+            const token = localStorage.getItem('token');
+            const userStr = localStorage.getItem('user');
+            
+            try {
+                const response = await fetch('http://localhost:5002/api/auth/profile', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    displayProfile(data.data.user);
+                } else if (response.status === 401) {
+                    // Token expired or invalid
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    window.location.href = 'signup.html';
+                } else {
+                    throw new Error('Failed to load profile');
+                }
+            } catch (error) {
+                console.error('Profile load error:', error);
+                // Fallback to localStorage data
+                if (userStr) {
+                    try {
+                        const user = JSON.parse(userStr);
+                        displayProfile(user);
+                    } catch (e) {
+                        showError('Unable to load profile data');
+                    }
+                } else {
+                    showError('Unable to connect to server');
+                }
+            }
+        }
+
+        function displayProfile(user) {
+            // Hide loading state
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('profileContent').style.display = 'grid';
+
+            // Update profile information with fallbacks
+            const firstName = user.firstName || user.first_name || 'User';
+            const lastName = user.lastName || user.last_name || '';
+            const email = user.email || 'No email';
+            const phone = user.mobile || user.phone || user.phoneNumber || user.mobileNumber || 'Not provided';
+            const role = user.role || 'user';
+            const fullName = `${firstName} ${lastName}`.trim();
+            const initials = firstName.charAt(0).toUpperCase() + (lastName ? lastName.charAt(0).toUpperCase() : '');
+            
+            // Update profile page content
+            document.getElementById('profileName').textContent = fullName;
+            document.getElementById('profileEmail').textContent = email;
+            document.getElementById('firstName').textContent = firstName;
+            document.getElementById('lastName').textContent = lastName;
+            document.getElementById('emailAddress').textContent = email;
+            document.getElementById('phoneNumber').textContent = phone;
+            document.getElementById('accountRole').textContent = role.charAt(0).toUpperCase() + role.slice(1);
+            document.getElementById('memberSince').textContent = user.createdAt ? formatDate(user.createdAt) : 'Recently';
+            document.getElementById('lastLogin').textContent = user.lastLogin ? formatDate(user.lastLogin) : 'Just now';
+            document.getElementById('accountStatus').textContent = (user.isActive !== false) ? 'Active' : 'Inactive';
+            
+            // Update header dropdown
+            document.getElementById('headerUserName').textContent = firstName;
+            document.getElementById('userAvatar').textContent = initials;
+            document.getElementById('dropdownAvatar').textContent = initials;
+            document.getElementById('dropdownName').textContent = fullName;
+            document.getElementById('dropdownEmail').textContent = email;
+
+            // Load real-time stats
+            loadUserStats(user.id);
+        }
+
+        function toggleUserDropdown() {
+            const dropdown = document.getElementById('userDropdownMenu');
+            dropdown.classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const userInfo = document.querySelector('.user-info');
+            const dropdown = document.getElementById('userDropdownMenu');
+            
+            if (dropdown && userInfo && !userInfo.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        function showError(message) {
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('errorState').style.display = 'block';
+            document.getElementById('errorMessage').textContent = message;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        async function loadUserStats(userId) {
+            try {
+                const token = localStorage.getItem('token');
+                
+                // Fetch stats from backend API
+                const response = await fetch(`http://localhost:5002/api/user-stats/${userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.success) {
+                        // Update Try-Ons count
+                        const tryOnsEl = document.getElementById('statTryOns');
+                        if (tryOnsEl) tryOnsEl.textContent = result.data.tryOns || 0;
+                        
+                        // Update Favorites count
+                        const favEl = document.getElementById('statFavorites');
+                        if (favEl) favEl.textContent = result.data.favorites || 0;
+                        
+                        // Update Saved count (combine backend + localStorage)
+                        let savedCount = result.data.saved || 0;
+                        const localSaved = JSON.parse(localStorage.getItem('savedCombinations') || '[]');
+                        savedCount += localSaved.length;
+                        const savedEl = document.getElementById('statSaved');
+                        if (savedEl) savedEl.textContent = savedCount;
+                        
+                        return;
+                    }
+                }
+                
+                // Fallback: load from localStorage if API fails
+                loadStatsFromLocalStorage();
+            } catch (error) {
+                console.error('Error loading user stats:', error);
+                // Fallback: load from localStorage
+                loadStatsFromLocalStorage();
+            }
+        }
+        
+        function loadStatsFromLocalStorage() {
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const userId = user.id || 'guest';
+            
+            // Try-ons count from localStorage (user-specific)
+            const tryOnCount = parseInt(localStorage.getItem(`tryOnCount_${userId}`) || '0');
+            const tryOnsEl = document.getElementById('statTryOns');
+            if (tryOnsEl) tryOnsEl.textContent = tryOnCount;
+            
+            // Favorites from localStorage (user-specific)
+            const favorites = JSON.parse(localStorage.getItem(`wishlistItems_${userId}`) || '[]');
+            const favEl = document.getElementById('statFavorites');
+            if (favEl) favEl.textContent = favorites.length;
+            
+            // Saved combinations from localStorage (user-specific)
+            const saved = JSON.parse(localStorage.getItem(`savedCombinations_${userId}`) || '[]');
+            const savedEl = document.getElementById('statSaved');
+            if (savedEl) savedEl.textContent = saved.length;
+        }
+
+        async function logout(event) {
+            if (event) event.preventDefault();
+            
+            // Close dropdown
+            const dropdown = document.getElementById('userDropdownMenu');
+            if (dropdown) dropdown.classList.remove('show');
+            
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const userId = user.id || 'guest';
+            
+            const token = localStorage.getItem('token');
+            
+            if (token) {
+                try {
+                    await fetch('http://localhost:5002/api/auth/logout', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                } catch (error) {
+                    console.error('Logout error:', error);
+                }
+            }
+            
+            // Clear user-specific data
+            localStorage.removeItem(`tryOnCount_${userId}`);
+            localStorage.removeItem(`wishlistItems_${userId}`);
+            localStorage.removeItem(`savedCombinations_${userId}`);
+            localStorage.removeItem(`notifications_${userId}`);
+            localStorage.removeItem(`tryon_uploaded_photo`);
+            localStorage.removeItem(`tryon_selected_items`);
+            localStorage.removeItem(`tryon_result_image`);
+            
+            // Clear local storage and redirect
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'index.html';
+        }
+
+        // Listen for real-time try-on updates from home page
+        window.addEventListener('tryOnSaved', (event) => {
+            const { userId, newCount } = event.detail;
+            const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            // Only update if it's the same user
+            if (currentUser.id === userId) {
+                const statTryOns = document.getElementById('statTryOns');
+                if (statTryOns) {
+                    statTryOns.textContent = newCount;
+                }
+            }
+        });
+
+        // Modal functions
+        function openEditModal() {
+            const userStr = localStorage.getItem('user');
+            if (!userStr) return;
+            
+            const user = JSON.parse(userStr);
+            document.getElementById('editFirstName').value = user.firstName || '';
+            document.getElementById('editLastName').value = user.lastName || '';
+            document.getElementById('editEmail').value = user.email || '';
+            document.getElementById('editBio').value = user.bio || '';
+            
+            document.getElementById('editModal').classList.add('show');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').classList.remove('show');
+        }
+
+        async function saveProfile(event) {
+            event.preventDefault();
+            
+            const btn = event.submitter;
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+            
+            const firstName = document.getElementById('editFirstName').value;
+            const lastName = document.getElementById('editLastName').value;
+            const email = document.getElementById('editEmail').value;
+            
+            const token = localStorage.getItem('token');
+            const user = JSON.parse(localStorage.getItem('user'));
+            
+            try {
+                const response = await fetch('http://localhost:5002/api/auth/update-profile', {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        firstName,
+                        lastName,
+                        email
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Update local storage
+                    const updatedUser = { ...user, ...result.data.user };
+                    localStorage.setItem('user', JSON.stringify(updatedUser));
+                    
+                    // Refresh UI
+                    displayProfile(updatedUser);
+                    
+                    // Show success
+                    alert('Profile updated successfully!');
+                    closeEditModal();
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Update error:', error);
+                alert('Connection error. Please try again.');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        }
+
+        // Close modal when clicking outside (if edit modal exists)
+        const editModal = document.getElementById('editModal');
+        if (editModal) {
+            editModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('show');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

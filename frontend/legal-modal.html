@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Legal Information | Dressify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+        }
+
+        /* Theme Variables */
+        :root {
+            --modal-bg: rgba(255, 255, 255, 0.95);
+            --modal-header-bg: rgba(255, 255, 255, 0.5);
+            --modal-border: rgba(0, 0, 0, 0.08);
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --tab-nav-bg: rgba(255, 255, 255, 0.3);
+            --tab-btn-bg: rgba(255, 255, 255, 0.8);
+            --tab-btn-text: #1a1a1a;
+            --tab-btn-hover-bg: rgba(102, 126, 234, 0.2);
+            --tab-btn-border: rgba(0, 0, 0, 0.05);
+            --close-btn-bg: rgba(0, 0, 0, 0.05);
+            --close-btn-text: #666;
+            --highlight-bg: rgba(102, 126, 234, 0.08);
+            --highlight-text: #2a2a2a;
+            --scrollbar-track: rgba(0, 0, 0, 0.05);
+            --scrollbar-thumb: rgba(102, 126, 234, 0.3);
+        }
+
+        /* Dark Mode */
+        [data-theme="dark"] {
+            --modal-bg: rgba(30, 30, 30, 0.98);
+            --modal-header-bg: rgba(20, 20, 20, 0.8);
+            --modal-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --tab-nav-bg: rgba(20, 20, 20, 0.6);
+            --tab-btn-bg: rgba(102, 126, 234, 0.2);
+            --tab-btn-text: #a8b8ff;
+            --tab-btn-hover-bg: rgba(102, 126, 234, 0.4);
+            --tab-btn-border: rgba(102, 126, 234, 0.4);
+            --close-btn-bg: rgba(255, 255, 255, 0.1);
+            --close-btn-text: #ffffff;
+            --highlight-bg: rgba(102, 126, 234, 0.15);
+            --highlight-text: #e0e0e0;
+            --scrollbar-track: rgba(255, 255, 255, 0.05);
+            --scrollbar-thumb: rgba(102, 126, 234, 0.5);
+        }
+
+        body {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Blur Background Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Premium Glassmorphism Modal */
+        .legal-modal {
+            background: var(--modal-bg);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border-radius: 24px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            box-shadow: 
+                0 30px 90px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Modal Header */
+        .modal-header {
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--modal-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--modal-header-bg);
+        }
+
+        .modal-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .modal-title i {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-title h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .close-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: var(--close-btn-bg);
+            color: var(--close-btn-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: rotate(90deg);
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            gap: 12px;
+            padding: 16px 32px;
+            background: var(--tab-nav-bg);
+            border-bottom: 1px solid var(--modal-border);
+            overflow-x: auto;
+            overflow-y: hidden;
+            flex-wrap: nowrap;
+        }
+
+        .tab-btn {
+            padding: 14px 28px;
+            border: none;
+            background: var(--tab-btn-bg);
+            color: var(--tab-btn-text);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-shrink: 0;
+            min-width: fit-content;
+            border: 2px solid var(--tab-btn-border);
+        }
+
+        .tab-btn:hover {
+            background: var(--tab-btn-hover-bg);
+            transform: translateY(-2px);
+            border-color: rgba(102, 126, 234, 0.6);
+        }
+        
+        /* Light mode hover */
+        [data-theme="light"] .tab-btn:hover {
+            color: #06b6d4;
+        }
+        
+        /* Dark mode hover */
+        [data-theme="dark"] .tab-btn:hover {
+            color: #c5d0ff;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #06b6d4, #0891b2) !important;
+            color: white !important;
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4);
+            border-color: transparent !important;
+        }
+
+        .tab-btn i {
+            font-size: 1.1rem;
+            display: inline-block;
+            color: inherit;
+        }
+        
+        .tab-btn.active i {
+            color: white !important;
+        }
+        
+        /* Ensure text is visible in dark mode */
+        [data-theme="dark"] .tab-btn {
+            color: #a8b8ff !important;
+            font-weight: 700;
+        }
+        
+        [data-theme="dark"] .tab-btn i {
+            color: #a8b8ff !important;
+        }
+        
+        [data-theme="dark"] .tab-btn.active {
+            color: white !important;
+        }
+        
+        [data-theme="dark"] .tab-btn.active i {
+            color: white !important;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeInContent 0.4s ease;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        @keyframes fadeInContent {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tab-pane h3 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .tab-pane p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .tab-pane ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        .tab-pane li {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .highlight-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid #06b6d4;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: var(--highlight-text);
+        }
+
+        /* Scrollbar Styling */
+        .tab-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .tab-content::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 10px;
+        }
+
+        .tab-content::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
+
+        .tab-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .legal-modal {
+                width: 95%;
+                max-height: 90vh;
+                border-radius: 20px;
+            }
+
+            .modal-header,
+            .tab-nav,
+            .tab-content {
+                padding: 20px;
+            }
+
+            .modal-title h2 {
+                font-size: 1.2rem;
+            }
+
+            .tab-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="modal-overlay">
+        <div class="legal-modal">
+            <!-- Header -->
+            <div class="modal-header">
+                <div class="modal-title">
+                    <i class="fas fa-shield-alt"></i>
+                    <h2>Legal Information</h2>
+                </div>
+                <button class="close-btn" onclick="window.location.href='home.html'">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="switchTab('privacy')"><i class="fas fa-user-shield"></i> Privacy Policy</button>
+                <button class="tab-btn" onclick="switchTab('terms')"><i class="fas fa-file-contract"></i> Terms of Service</button>
+                <button class="tab-btn" onclick="switchTab('cookie')"><i class="fas fa-cookie-bite"></i> Cookie Policy</button>
+                <button class="tab-btn" onclick="switchTab('security')"><i class="fas fa-lock"></i> Data Security</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Privacy Policy -->
+                <div id="privacy" class="tab-pane active">
+                    <div class="section">
+                        <h3>Privacy Policy</h3>
+                        <p>Last updated: February 13, 2026</p>
+                        
+                        <div class="highlight-box">
+                            <p><strong>Your privacy is important to us.</strong> This Privacy Policy explains how we collect, use, and protect your personal information.</p>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3>Information We Collect</h3>
+                        <p>We collect information that you provide directly to us, including:</p>
+                        <ul>
+                            <li>Name and contact information</li>
+                            <li>Account credentials</li>
+                            <li>Photos you upload for virtual try-on</li>
+                            <li>Usage data and preferences</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h3>How We Use Your Information</h3>
+                        <p>We use the information we collect to:</p>
+                        <ul>
+                            <li>Provide and improve our virtual try-on services</li>
+                            <li>Personalize your experience</li>
+                            <li>Communicate with you about our services</li>
+                            <li>Ensure security and prevent fraud</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h3>Data Protection</h3>
+                        <p>We implement industry-standard security measures to protect your personal information from unauthorized access, disclosure, or destruction.</p>
+                    </div>
+                </div>
+
+                <!-- Terms of Service -->
+                <div id="terms" class="tab-pane">
+                    <div class="section">
+                        <h3>Terms of Service</h3>
+                        <p>Last updated: February 13, 2026</p>
+                        
+                        <div class="highlight-box">
+                            <p><strong>Welcome to Dressify!</strong> By using our service, you agree to these terms. Please read them carefully.</p>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3>Acceptance of Terms</h3>
+                        <p>By accessing and using Dressify's virtual try-on service, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                    </div>
+
+                    <div class="section">
+                        <h3>Use of Service</h3>
+                        <p>You agree to use our service only for lawful purposes and in accordance with these Terms. You agree not to:</p>
+                        <ul>
+                            <li>Use the service in any way that violates applicable laws</li>
+                            <li>Upload inappropriate or offensive content</li>
+                            <li>Attempt to gain unauthorized access to our systems</li>
+                            <li>Interfere with or disrupt the service</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h3>Intellectual Property</h3>
+                        <p>All content, features, and functionality of our service are owned by Dressify and are protected by international copyright, trademark, and other intellectual property laws.</p>
+                    </div>
+                </div>
+
+                <!-- Cookie Policy -->
+                <div id="cookie" class="tab-pane">
+                    <div class="section">
+                        <h3>Cookie Policy</h3>
+                        <p>Last updated: February 13, 2026</p>
+                        
+                        <div class="highlight-box">
+                            <p><strong>We use cookies to enhance your experience.</strong> This policy explains what cookies are and how we use them.</p>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3>What Are Cookies?</h3>
+                        <p>Cookies are small text files that are placed on your device when you visit our website. They help us provide you with a better experience by remembering your preferences and understanding how you use our service.</p>
+                    </div>
+
+                    <div class="section">
+                        <h3>Types of Cookies We Use</h3>
+                        <ul>
+                            <li><strong>Essential Cookies:</strong> Required for the website to function properly</li>
+                            <li><strong>Performance Cookies:</strong> Help us understand how visitors interact with our website</li>
+                            <li><strong>Functionality Cookies:</strong> Remember your preferences and settings</li>
+                            <li><strong>Analytics Cookies:</strong> Help us improve our service</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h3>Managing Cookies</h3>
+                        <p>You can control and manage cookies through your browser settings. However, disabling cookies may affect the functionality of our service.</p>
+                    </div>
+                </div>
+
+                <!-- Data Security -->
+                <div id="security" class="tab-pane">
+                    <div class="section">
+                        <h3>Data Security</h3>
+                        <p>Last updated: February 13, 2026</p>
+                        
+                        <div class="highlight-box">
+                            <p><strong>Your data security is our top priority.</strong> We implement comprehensive security measures to protect your information.</p>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3>Security Measures</h3>
+                        <p>We employ multiple layers of security to protect your data:</p>
+                        <ul>
+                            <li><strong>Encryption:</strong> All data is encrypted in transit and at rest</li>
+                            <li><strong>Secure Storage:</strong> Your photos are stored securely and deleted after processing</li>
+                            <li><strong>Access Control:</strong> Strict access controls limit who can view your data</li>
+                            <li><strong>Regular Audits:</strong> We conduct regular security audits and updates</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h3>Data Retention</h3>
+                        <p>We retain your personal information only for as long as necessary to provide our services and comply with legal obligations. You can request deletion of your data at any time.</p>
+                    </div>
+
+                    <div class="section">
+                        <h3>Your Rights</h3>
+                        <p>You have the right to:</p>
+                        <ul>
+                            <li>Access your personal data</li>
+                            <li>Correct inaccurate data</li>
+                            <li>Request deletion of your data</li>
+                            <li>Object to data processing</li>
+                            <li>Data portability</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Apply theme on page load
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+
+        function switchTab(tabName) {
+            // Remove active class from all tabs and panes
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+
+            // Add active class to clicked tab and corresponding pane
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+
+            // Scroll to top of content
+            document.querySelector('.tab-content').scrollTop = 0;
+        }
+
+        // Open correct tab based on URL parameter on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            // Get URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const tabParam = urlParams.get('tab');
+            
+            // Valid tab names
+            const validTabs = ['privacy', 'terms', 'cookie', 'security'];
+            
+            // If valid tab parameter exists, open that tab
+            if (tabParam && validTabs.includes(tabParam)) {
+                // Remove active from all
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('active');
+                });
+                
+                // Activate the correct tab button and pane
+                const targetBtn = document.querySelector(`[onclick="switchTab('${tabParam}')"]`);
+                const targetPane = document.getElementById(tabParam);
+                
+                if (targetBtn && targetPane) {
+                    targetBtn.classList.add('active');
+                    targetPane.classList.add('active');
+                }
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                window.location.href = 'home.html';
+            }
+        });
+
+        // Close modal when clicking outside
+        document.querySelector('.modal-overlay').addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                window.location.href = 'home.html';
+            }
+        });
+    </script>
+</body>
+</html>
